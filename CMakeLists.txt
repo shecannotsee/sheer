@@ -153,7 +153,8 @@ endif ()
 
 # include install
 install(FILES
-        ${CMAKE_SOURCE_DIR}/src/placeholder.h # source file
+        ${CMAKE_SOURCE_DIR}/src/sheer.h # source file
+        ${CMAKE_SOURCE_DIR}/src/timed_cache_queue.h
         DESTINATION # to
         ${project_name}/include # install path
 )
