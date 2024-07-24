@@ -48,5 +48,10 @@ SHE_TEST(timed_cache_queue_test, main) {
   add_thread.join();
   clean_thread.join();
 
+  // build error message like this:
+  // /sheer/src/timed_cache_queue.h:30:17: error: static assertion failed due to requirement 'has_timestamp_member<int,
+  // void>::value': T must have a 'timestamp' member of type std::chrono::time_point
+  //    30 |   static_assert(has_timestamp_member<T>::value, "T must have a 'timestamp' member of type std::chrono::time_point");
+  // sheer::timed_cache_queue<int> error(10);
   return true;
 }
