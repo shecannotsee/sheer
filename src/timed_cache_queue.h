@@ -5,6 +5,8 @@
 #include <queue>
 #include <thread>
 
+namespace sheer {
+
 template <typename T>
 class timed_cache_queue {
  public:
@@ -69,5 +71,7 @@ class timed_cache_queue {
     return true;
   }
 };
+
+}  // namespace sheer
 
 #endif  // TIMED_CACHE_QUEUE_H
