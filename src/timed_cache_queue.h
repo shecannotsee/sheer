@@ -58,6 +58,16 @@ class timed_cache_queue {
     std::lock_guard<std::mutex> lock(mutex_);
     queue_.push(element);
   }
+
+  bool pop(T& element) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    if (queue_.empty()) {
+      return false;
+    }
+    element = queue_.front();
+    queue_.pop();
+    return true;
+  }
 };
 
 #endif  // TIMED_CACHE_QUEUE_H
