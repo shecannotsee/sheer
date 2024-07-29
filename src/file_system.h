@@ -1,11 +1,6 @@
 #ifndef SHEER_FILE_SYSTEM_H
 #define SHEER_FILE_SYSTEM_H
 
-#include <dirent.h>
-#include <sys/stat.h>
-#include <unistd.h>
-
-#include <stdexcept>
 #include <string>
 
 namespace sheer {

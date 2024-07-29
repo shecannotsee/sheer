@@ -1,5 +1,11 @@
 #include "file_system.h"
 
+#include <dirent.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+#include <stdexcept>
+
 bool sheer::file_system::is_directory_exists(const std::string& full_path) {
   struct stat info {};
   if (stat(full_path.c_str(), &info) != 0) {
