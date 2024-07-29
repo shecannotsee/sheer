@@ -4,20 +4,20 @@
 
 namespace {
 struct test_struct {
-  std::chrono::time_point<std::chrono::system_clock> timestamp;  // 时间戳
+  std::chrono::time_point<std::chrono::system_clock> timestamp;  // timestamp
   test_struct(std::chrono::time_point<std::chrono::system_clock> ts) : timestamp(ts) {
   }
 };
 
 }  // namespace
 
-SHE_TEST(timed_cache_queue_test, main) {
+SHE_TEST(test_timed_cache_queue, sample) {
   sheer::timed_cache_queue<test_struct> cache(10);
 
   // 模拟添加几个元素
-  cache.push(test_struct(std::chrono::system_clock::now()));  // 当前时间戳
-  std::this_thread::sleep_for(std::chrono::seconds(5));       // 等待5秒
-  cache.push(test_struct(std::chrono::system_clock::now()));  // 当前时间戳
+  cache.push(test_struct(std::chrono::system_clock::now()));  // Current timestamp
+  std::this_thread::sleep_for(std::chrono::seconds(5));       // Wait 5 seconds
+  cache.push(test_struct(std::chrono::system_clock::now()));  // Current timestamp
 
   // 测试获取元素
   auto timestamp = std::chrono::system_clock::now();
@@ -29,19 +29,19 @@ SHE_TEST(timed_cache_queue_test, main) {
   }
 
   std::cout << "Before cleanup, cache size: " << cache.size() << std::endl;
-  std::this_thread::sleep_for(std::chrono::seconds(10));  // 等待10秒，触发自动清理
+  std::this_thread::sleep_for(std::chrono::seconds(10));  // Wait 10 seconds to trigger automatic cleanup
   std::cout << "After automatic cleanup, cache size: " << cache.size() << std::endl;
 
   // 测试并发添加和自动清理
   std::thread add_thread([&cache]() {
     for (int i = 0; i < 5; ++i) {
-      cache.push(test_struct(std::chrono::system_clock::now()));  // 当前时间戳
-      std::this_thread::sleep_for(std::chrono::seconds(2));       // 等待2秒
+      cache.push(test_struct(std::chrono::system_clock::now()));  // Current timestamp
+      std::this_thread::sleep_for(std::chrono::seconds(2));       // Wait 2 seconds
     }
   });
 
   std::thread clean_thread([&cache]() {
-    std::this_thread::sleep_for(std::chrono::seconds(20));  // 等待20秒，触发自动清理
+    std::this_thread::sleep_for(std::chrono::seconds(20));  // Wait 20 seconds to trigger automatic cleanup
     std::cout << "Concurrent cleanup, cache size: " << cache.size() << std::endl;
   });
 
@@ -51,7 +51,8 @@ SHE_TEST(timed_cache_queue_test, main) {
   // build error message like this:
   // /sheer/src/timed_cache_queue.h:30:17: error: static assertion failed due to requirement 'has_timestamp_member<int,
   // void>::value': T must have a 'timestamp' member of type std::chrono::time_point
-  //    30 |   static_assert(has_timestamp_member<T>::value, "T must have a 'timestamp' member of type std::chrono::time_point");
+  //    30 |   static_assert(has_timestamp_member<T>::value, "T must have a 'timestamp' member of type
+  //    std::chrono::time_point");
   // sheer::timed_cache_queue<int> error(10);
   return true;
 }
