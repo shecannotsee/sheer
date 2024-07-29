@@ -1,8 +1,6 @@
 #include <she_test.h>
 #include <sheer.h>
 
-#include <thread>
-
 SHE_TEST(test_date_time, sample) {
   using record = test_support::date_time;
 
