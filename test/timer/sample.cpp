@@ -1,10 +1,10 @@
 #include <she_test.h>
-#include <timer.h>
+#include <sheer.h>
 
 #include <thread>
 
 SHE_TEST(test_timer, sample) {
-  sheer::timer record;
+  test_support::timer record;
 
   record.start();
   std::this_thread::sleep_for(std::chrono::seconds(2));

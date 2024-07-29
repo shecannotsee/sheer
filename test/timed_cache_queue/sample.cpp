@@ -1,6 +1,5 @@
 #include <she_test.h>
-
-#include "sheer.h"
+#include <sheer.h>
 
 namespace {
 struct test_struct {
@@ -12,7 +11,7 @@ struct test_struct {
 }  // namespace
 
 SHE_TEST(test_timed_cache_queue, sample) {
-  sheer::timed_cache_queue<test_struct> cache(10);
+  test_support::timed_cache_queue<test_struct> cache(10);
 
   // 模拟添加几个元素
   cache.push(test_struct(std::chrono::system_clock::now()));  // Current timestamp
@@ -53,6 +52,6 @@ SHE_TEST(test_timed_cache_queue, sample) {
   // void>::value': T must have a 'timestamp' member of type std::chrono::time_point
   //    30 |   static_assert(has_timestamp_member<T>::value, "T must have a 'timestamp' member of type
   //    std::chrono::time_point");
-  // sheer::timed_cache_queue<int> error(10);
+  // test_support::timed_cache_queue<int> error(10);
   return true;
 }

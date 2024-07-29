@@ -1,11 +1,11 @@
 #include <she_test.h>
-#include <timer.h>
+#include <sheer.h>
 
 #include <thread>
 
 SHE_TEST(test_timer, boundary_test) {
   {
-    sheer::timer record;
+    test_support::timer record;
     record.end();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     record.start();
@@ -15,7 +15,7 @@ SHE_TEST(test_timer, boundary_test) {
   }
 
   {
-    sheer::timer record_without_init;
+    test_support::timer record_without_init;
     std::this_thread::sleep_for(std::chrono::seconds(1));
     try {
       std::cout << "     seconds: " << record_without_init.get_elapsed<std::chrono::seconds>()      << " passed.\n";
@@ -27,7 +27,7 @@ SHE_TEST(test_timer, boundary_test) {
   }
 
   {
-    sheer::timer record_without_start;
+    test_support::timer record_without_start;
     std::this_thread::sleep_for(std::chrono::seconds(1));
     record_without_start.end();
     try {
@@ -40,7 +40,7 @@ SHE_TEST(test_timer, boundary_test) {
   }
 
   {
-    sheer::timer record_without_end;
+    test_support::timer record_without_end;
     record_without_end.start();
     std::this_thread::sleep_for(std::chrono::seconds(1));
     try {
