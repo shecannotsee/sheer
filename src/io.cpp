@@ -23,15 +23,46 @@ auto sheer::io::read_binary_file(const std::string& file_path) -> std::vector<ui
   }
 }
 
-void sheer::io::write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data) {
-  // Open file, binary mode and output mode
-  std::ofstream file(file_path, std::ios::binary);
+void sheer::io::append_to_file(const std::string& file_path, const std::vector<uint8_t>& data) {
+  std::ofstream file(file_path, std::ios::binary | std::ios::app);
   if (!file.is_open()) {
-    throw std::runtime_error(std::string("Failed to open file: " + file_path));
+    throw std::runtime_error("Failed to open file " + file_path);
   }
+  file.write(reinterpret_cast<const char*>(data.data()), data.size());
+  if (!file) {
+    throw std::runtime_error("Failed to write to file " + file_path);
+  }
+}
 
-  // Write data to a file
-  if (!file.write(reinterpret_cast<const char*>(data.data()), data.size())) {
-    throw std::runtime_error(std::string("Failed to write to file: " + file_path));
+void sheer::io::append_to_file(const std::string& file_path, const std::string& data) {
+  std::ofstream file(file_path, std::ios::app);
+  if (!file.is_open()) {
+    throw std::runtime_error("Failed to open file " + file_path);
+  }
+  file << data;
+  if (!file) {
+    throw std::runtime_error("Failed to write to file " + file_path);
+  }
+}
+
+void sheer::io::clear_and_write(const std::string& file_path, const std::vector<uint8_t>& data) {
+  std::ofstream file(file_path, std::ios::binary | std::ios::trunc);
+  if (!file.is_open()) {
+    throw std::runtime_error("Failed to open file " + file_path);
+  }
+  file.write(reinterpret_cast<const char*>(data.data()), data.size());
+  if (!file) {
+    throw std::runtime_error("Failed to write to file " + file_path);
+  }
+}
+
+void sheer::io::clear_and_write(const std::string& file_path, const std::string& data) {
+  std::ofstream file(file_path, std::ios::trunc);
+  if (!file.is_open()) {
+    throw std::runtime_error("Failed to open file " + file_path);
+  }
+  file << data;
+  if (!file) {
+    throw std::runtime_error("Failed to write to file " + file_path);
   }
 }

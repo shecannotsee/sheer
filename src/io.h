@@ -15,12 +15,13 @@ class io {
    */
   static auto read_binary_file(const std::string& file_path) -> std::vector<uint8_t>;
 
-  /**
-   * @brief Write binary data to a file
-   * @param file_path file path
-   * @param data data to write
-   */
-  static void write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data);
+  static void append_to_file(const std::string& file_path, const std::vector<uint8_t>& data);
+
+  static void append_to_file(const std::string& file_path, const std::string& data);
+
+  static void clear_and_write(const std::string& file_path, const std::vector<uint8_t>& data);
+
+  static void clear_and_write(const std::string& file_path, const std::string& data);
 };
 }  // namespace sheer
 
