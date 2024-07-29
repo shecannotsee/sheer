@@ -1,0 +1,56 @@
+#ifndef SHEER_IO_H
+#define SHEER_IO_H
+
+#include <cstdint>
+#include <fstream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+class io {
+ public:
+  /**
+   * @brief Read binary data from a file
+   * @param file_path file path
+   * @return Read binary data stream
+   */
+  static std::vector<uint8_t> read_binary_file(const std::string& file_path) {
+    // 打开文件，二进制模式和输入模式
+    std::ifstream file(file_path, std::ios::binary | std::ios::ate);
+    if (!file.is_open()) {
+      throw std::runtime_error(std::string("Failed to open file: " + file_path));
+    }
+
+    // 获取文件大小
+    std::streamsize size = file.tellg();
+    file.seekg(0, std::ios::beg);
+
+    // 创建缓冲区
+    std::vector<uint8_t> buffer(size);
+    if (file.read(buffer.data(), size)) {
+      return buffer;
+    } else {
+      throw std::runtime_error(std::string("Failed to read file: " + file_path));
+    }
+  }
+
+  /**
+   * @brief Write binary data to a file
+   * @param file_path file path
+   * @param data data to write
+   */
+  static void write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data) {
+    // Open file, binary mode and output mode
+    std::ofstream file(file_path, std::ios::binary);
+    if (!file.is_open()) {
+      throw std::runtime_error(std::string("Failed to open file: " + file_path));
+    }
+
+    // Write data to a file
+    if (!file.write(reinterpret_cast<const char*>(data.data()), data.size())) {
+      throw std::runtime_error(std::string("Failed to write to file: " + file_path));
+    }
+  }
+};
+
+#endif  // SHEER_IO_H
