@@ -1,5 +1,5 @@
-#ifndef TIMED_CACHE_QUEUE_H
-#define TIMED_CACHE_QUEUE_H
+#ifndef SHEER_TIMED_CACHE_QUEUE_H
+#define SHEER_TIMED_CACHE_QUEUE_H
 
 #include <condition_variable>
 #include <queue>
@@ -125,4 +125,4 @@ class timed_cache_queue {
 
 }  // namespace sheer
 
-#endif  // TIMED_CACHE_QUEUE_H
+#endif  // SHEER_TIMED_CACHE_QUEUE_H
