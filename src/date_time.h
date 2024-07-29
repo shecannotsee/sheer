@@ -52,6 +52,24 @@ class date_time {
     oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
     return oss.str();
   }
+
+  /**
+   * @brief Convert the time point to a date string with milliseconds.
+   *
+   * This method converts the given time point to a formatted string in the form "YYYY-MM-DD HH:MM:SS.sss",
+   * where "sss" represents the milliseconds part of the time.
+   *
+   * @param time_point The time point to convert.
+   * @return A formatted date string with milliseconds.
+   */
+  static std::string format_date_string_with_milliseconds(const std::chrono::system_clock::time_point& time_point) {
+    std::time_t time  = std::chrono::system_clock::to_time_t(time_point);
+    std::tm tm        = *std::localtime(&time);
+    auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch()) % 1000;
+    std::ostringstream oss;
+    oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << '.' << std::setfill('0') << std::setw(3) << milliseconds.count();
+    return oss.str();
+  }
 };
 
 }  // namespace sheer
