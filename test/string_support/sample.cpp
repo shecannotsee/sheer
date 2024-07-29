@@ -1,7 +1,7 @@
 #include <she_test.h>
 #include <sheer.h>
 
-SHE_TEST(string_alignment, sample) {
+SHE_TEST(string_support, alignment_sample) {
   using string_support = test_support::string_support;
 
   {
