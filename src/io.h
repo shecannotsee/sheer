@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+namespace sheer {
 class io {
  public:
   /**
@@ -21,5 +22,6 @@ class io {
    */
   static void write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data);
 };
+}  // namespace sheer
 
 #endif  // SHEER_IO_H
