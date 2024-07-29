@@ -3,7 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 
-auto io::read_binary_file(const std::string& file_path) -> std::vector<uint8_t> {
+auto sheer::io::read_binary_file(const std::string& file_path) -> std::vector<uint8_t> {
   // 打开文件，二进制模式和输入模式
   std::ifstream file(file_path, std::ios::binary | std::ios::ate);
   if (!file.is_open()) {
@@ -23,7 +23,7 @@ auto io::read_binary_file(const std::string& file_path) -> std::vector<uint8_t> 
   }
 }
 
-void io::write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data) {
+void sheer::io::write_binary_to_file(const std::string& file_path, const std::vector<uint8_t>& data) {
   // Open file, binary mode and output mode
   std::ofstream file(file_path, std::ios::binary);
   if (!file.is_open()) {
