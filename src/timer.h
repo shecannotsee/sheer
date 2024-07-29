@@ -12,26 +12,34 @@ class timer {
 
  public:
   /**
-   * @brief Recording start time
+   * @brief Record the start time.
+   *
+   * This method records the current time as the start time using the high resolution clock.
    */
   void start() {
     start_time = std::chrono::high_resolution_clock::now();
   }
 
   /**
-   * @brief Recording end time
+   * @brief Record the end time.
+   *
+   * This method records the current time as the end time using the high resolution clock.
    */
   void end() {
     end_time = std::chrono::high_resolution_clock::now();
   }
 
   /**
-   * @brief Calculate the interval between start and end times
-   * @tparam Duration
-   * std::chrono::seconds seconds;
-   * std::chrono::milliseconds milliseconds;
-   * std::chrono::microseconds microseconds;
-   * @return The time elapsed between the start and end
+   * @brief Calculate the interval between start and end times.
+   *
+   * This template function calculates the elapsed time between the recorded start and end times.
+   * The duration type is specified by the template parameter `Duration`, such as `std::chrono::seconds` for seconds,
+   * `std::chrono::milliseconds` for milliseconds, and `std::chrono::microseconds` for microseconds.
+   *
+   * @tparam Duration The type of duration (e.g., `std::chrono::seconds`, `std::chrono::milliseconds`,
+   * `std::chrono::microseconds`).
+   * @return The elapsed time between the start and end times in the specified units.
+   * @throws std::runtime_error If start or end time has not been set.
    */
   template <typename Duration>
   [[nodiscard]] long long get_elapsed() const {
