@@ -1,7 +1,7 @@
 #include <she_test.h>
 #include <sheer.h>
 
-SHE_TEST(test_date_time, sample) {
+SHE_TEST(date_time, sample) {
   using record = test_support::date_time;
 
   const auto now = record::get_time_point();

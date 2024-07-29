@@ -3,7 +3,7 @@
 
 #include <thread>
 
-SHE_TEST(test_timer, sample) {
+SHE_TEST(timer, sample) {
   test_support::timer record;
 
   record.start();

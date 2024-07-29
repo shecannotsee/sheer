@@ -3,7 +3,7 @@
 
 #include <thread>
 
-SHE_TEST(test_timer, boundary_test) {
+SHE_TEST(timer, boundary_test) {
   {
     test_support::timer record;
     record.end();

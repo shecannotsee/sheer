@@ -1,7 +1,7 @@
 #include <she_test.h>
 #include <sheer.h>
 
-SHE_TEST(test_file_system, file) {
+SHE_TEST(file_system, file) {
   using fs = test_support::file_system;
   using string_support = test_support::string_support;
 

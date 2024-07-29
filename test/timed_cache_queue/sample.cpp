@@ -10,7 +10,7 @@ struct test_struct {
 
 }  // namespace
 
-SHE_TEST(test_timed_cache_queue, sample) {
+SHE_TEST(timed_cache_queue, sample) {
   test_support::timed_cache_queue<test_struct> cache(10);
 
   // 模拟添加几个元素

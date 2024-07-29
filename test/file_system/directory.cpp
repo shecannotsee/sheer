@@ -1,7 +1,7 @@
 #include <she_test.h>
 #include <sheer.h>
 
-SHE_TEST(test_file_system, directory_list) {
+SHE_TEST(file_system, directory_list) {
   using fs = test_support::file_system;
 
   auto lists = fs::directory::list("./");
@@ -18,7 +18,7 @@ SHE_TEST(test_file_system, directory_list) {
   return true;
 }
 
-SHE_TEST(test_file_system, directory_create_and_remove) {
+SHE_TEST(file_system, directory_create_and_remove) {
   using fs             = test_support::file_system;
   using string_support = test_support::string_support;
 
