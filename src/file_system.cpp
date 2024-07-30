@@ -13,6 +13,9 @@ bool sheer::file_system::file::exists(const std::string& file_path) {
 }
 
 void sheer::file_system::file::create(const std::string& file_path) {
+  if (file_system::file::exists(file_path)) {
+    return;
+  }
   FILE* file = fopen(file_path.c_str(), "w");
   if (!file) {
     throw std::runtime_error("Failed to create file " + file_path);
