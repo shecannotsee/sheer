@@ -155,6 +155,11 @@ endif ()
 install(FILES
         ${CMAKE_SOURCE_DIR}/src/sheer.h # source file
         ${CMAKE_SOURCE_DIR}/src/timed_cache_queue.h
+        ${CMAKE_SOURCE_DIR}/src/date_time.h
+        ${CMAKE_SOURCE_DIR}/src/file_system.h
+        ${CMAKE_SOURCE_DIR}/src/io.h
+        ${CMAKE_SOURCE_DIR}/src/string_support.h
+        ${CMAKE_SOURCE_DIR}/src/timer.h
         DESTINATION # to
         ${project_name}/include # install path
 )
