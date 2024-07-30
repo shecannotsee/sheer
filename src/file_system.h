@@ -31,6 +31,8 @@ class file_system {
     /**
      * @brief Creates a file at the specified path.
      *
+     * Checks if the file exists before attempting to create it.
+     *
      * @param file_path The path of the file to create.
      */
     static void create(const std::string& file_path);
