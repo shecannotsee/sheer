@@ -16,11 +16,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void left_align_string(std::string& str, const size_t width) {
-    if (str.length() < width) {
-      str.append(width - str.length(), ' ');
-    }
-  }
+  static void left_align_string(std::string& str, const size_t width);
 
   /**
    * @brief Center-aligns a string within a specified width.
@@ -31,14 +27,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void center_align_string(std::string& str, const size_t width) {
-    if (str.length() < width) {
-      const size_t left_padding  = (width - str.length()) / 2;
-      const size_t right_padding = width - str.length() - left_padding;
-      str.insert(0, left_padding, ' ');
-      str.append(right_padding, ' ');
-    }
-  }
+  static void center_align_string(std::string& str, const size_t width);
 
   /**
    * @brief Right-aligns a string within a specified width.
@@ -49,11 +38,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void right_align_string(std::string& str, const size_t width) {
-    if (str.length() < width) {
-      str.insert(0, width - str.length(), ' ');
-    }
-  }
+  static void right_align_string(std::string& str, const size_t width);
 
   /**
    * @brief Calculates the maximum length among several strings.
