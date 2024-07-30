@@ -76,3 +76,10 @@ SHE_TEST(file_system, directory_create_and_remove) {
 
   return true;
 }
+
+SHE_TEST(file_system, directory_t) {
+  using fs = test_support::file_system;
+  // TODO:to test remove dir when dir is not enpty
+
+  return true;
+}
