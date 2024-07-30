@@ -99,19 +99,16 @@ file(GLOB_RECURSE src "${CMAKE_SOURCE_DIR}/src/*")
 # Exclude specific files
 # list(REMOVE_ITEM src "${CMAKE_SOURCE_DIR}/src/add.cpp")
 
-if (build_shared_libs STREQUAL OFF)
-    add_library(${library_static_name} STATIC ${src})
-    # Rename the generated static library
-    set_target_properties(${library_static_name} PROPERTIES OUTPUT_NAME ${project_name})
+add_library(${library_static_name} STATIC ${src})
+# Rename the generated static library
+set_target_properties(${library_static_name} PROPERTIES OUTPUT_NAME ${project_name})
+target_link_libraries(${library_static_name} PRIVATE ${src_link_dependency})
 
-else ()
-    add_library(${library_static_name} STATIC ${src})
-    # Rename the generated static library
-    set_target_properties(${library_static_name} PROPERTIES OUTPUT_NAME ${project_name})
-
+if (build_shared_libs STREQUAL ON)
     add_library(${library_dynamic_name} SHARED ${src})
     # Rename the generated dynamic library
     set_target_properties(${library_dynamic_name} PROPERTIES OUTPUT_NAME ${project_name})
+    target_link_libraries(${library_dynamic_name} PRIVATE ${src_link_dependency})
 endif ()
 
 ########################################################################################################################
