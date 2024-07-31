@@ -110,7 +110,7 @@ void sheer::file_system::directory::create(const std::string& dir_path) {
 
 void sheer::file_system::directory::remove(const std::string& dir_path) {
   if (rmdir(dir_path.c_str()) != 0) {
-    throw std::runtime_error(std::string("Failed to delete directory " + dir_path));
+    throw std::runtime_error(std::string("Failed to delete directory(The directory may not be empty) " + dir_path));
   }
 }
 
