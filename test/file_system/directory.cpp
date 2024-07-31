@@ -77,9 +77,27 @@ SHE_TEST(file_system, directory_create_and_remove) {
   return true;
 }
 
-SHE_TEST(file_system, directory_t) {
+SHE_TEST(file_system, directory_remove_boundary) {
   using fs = test_support::file_system;
-  // TODO:to test remove dir when dir is not enpty
+
+  const std::string file_path      = "directory_boundary.txt";
+  const std::string directory_path = "./directory_boundary/";
+  fs::directory::create(directory_path);
+  fs::file::create(directory_path + file_path);
+  try {
+    fs::directory::remove(directory_path);
+  } catch (const std::runtime_error& ex) {
+    printf("%s\n", ex.what());
+  }
+  fs::file::remove(directory_path + file_path);
+  fs::directory::remove(directory_path);
+
+  if (!fs::directory::exists(directory_path)) {
+    std::cout << "dir right\n";
+  }
+  if (!fs::file::exists(directory_path + file_path)) {
+    std::cout << "file right\n";
+  }
 
   return true;
 }
