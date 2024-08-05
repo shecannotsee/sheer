@@ -80,7 +80,7 @@ class file_system {
      * @brief Removes the directory at the specified path.
      *
      * @param dir_path The path of the directory to remove.
-     * @throws std::runtime_error if the directory cannot be removed.
+     * @throws std::runtime_error if the directory(not empty) cannot be removed.
      */
     static void remove(const std::string& dir_path);
 
