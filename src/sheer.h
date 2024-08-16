@@ -7,6 +7,7 @@
 #include "string_support.h"
 #include "timed_cache_queue.h"
 #include "timer.h"
+#include "destructor.h"
 
 namespace test_support {
 using sheer::date_time;
@@ -15,6 +16,8 @@ using sheer::io;
 using sheer::string_support;
 using sheer::timed_cache_queue;
 using sheer::timer;
+using sheer::finally;
+using sheer::final_action;
 }  // namespace test_support
 
 #endif  // SHEER_H
