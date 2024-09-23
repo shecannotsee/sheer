@@ -16,7 +16,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void left_align_string(std::string& str, const size_t width);
+  static void left_align_string(std::string& str, size_t width);
 
   /**
    * @brief Center-aligns a string within a specified width.
@@ -27,7 +27,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void center_align_string(std::string& str, const size_t width);
+  static void center_align_string(std::string& str, size_t width);
 
   /**
    * @brief Right-aligns a string within a specified width.
@@ -38,7 +38,7 @@ class string_support {
    * @param str The string to align.
    * @param width The desired width.
    */
-  static void right_align_string(std::string& str, const size_t width);
+  static void right_align_string(std::string& str, size_t width);
 
   /**
    * @brief Calculates the maximum length among several strings.

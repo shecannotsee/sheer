@@ -38,7 +38,7 @@ auto sheer::file_system::directory::list(const std::string& dir_path) -> std::ve
   }
 
   struct dirent* entry;
-  struct stat statbuf;
+  struct stat statbuf{};
   while ((entry = readdir(dir)) != nullptr) {
     std::string entry_name = entry->d_name;
     if (entry_name == "." || entry_name == "..") {
@@ -93,14 +93,14 @@ void sheer::file_system::directory::create(const std::string& dir_path) {
 
   const auto size = dir_path.size();
   std::string use_dir_path;
-  for (int i = 0; i < size; i++) {
+  for (size_t i = 0; i < size; i++) {
     // check
     if ((dir_path[i] == '/' && use_dir_path.back() != '.') || (i == (size - 1))) {
       if (i == size - 1) {
         use_dir_path += dir_path[i];
       }
       // mkdir
-      if (const int ret = mkdir(use_dir_path.c_str(), mode); ret != 0) {
+      if (const int32_t ret = mkdir(use_dir_path.c_str(), mode); ret != 0) {
         throw std::runtime_error(std::string("Failed to create directory: " + use_dir_path));
       }
     }

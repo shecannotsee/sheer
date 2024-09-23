@@ -1,6 +1,7 @@
 #ifndef SHEER_TIMER_H
 #define SHEER_TIMER_H
 
+#include <cstdint>
 #include <chrono>
 #include <stdexcept>
 
@@ -42,7 +43,7 @@ class timer {
    * @throws std::runtime_error If start or end time has not been set.
    */
   template <typename Duration>
-  [[nodiscard]] long long get_elapsed() const {
+  [[nodiscard]] uint64_t get_elapsed() const {
     if (start_time == std::chrono::high_resolution_clock::time_point{} ||
         end_time == std::chrono::high_resolution_clock::time_point{}) {
       throw std::runtime_error("Please use the interface correctly before obtaining the time interval");

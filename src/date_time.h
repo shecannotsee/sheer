@@ -2,6 +2,7 @@
 #define SHEER_DATE_TIME_H
 
 #include <chrono>
+#include <cstdint>
 #include <iomanip>
 #include <string>
 
@@ -33,7 +34,7 @@ class date_time {
    * @return The duration since the Unix epoch in the specified units.
    */
   template <typename duration>
-  static long long to_duration_number(const std::chrono::system_clock::time_point& time_point) {
+  static uint64_t to_duration_number(const std::chrono::system_clock::time_point& time_point) {
     return std::chrono::duration_cast<duration>(time_point.time_since_epoch()).count();
   }
 
@@ -46,8 +47,8 @@ class date_time {
    * @return A formatted date string.
    */
   static std::string format_date_string(const std::chrono::system_clock::time_point& time_point) {
-    std::time_t time = std::chrono::system_clock::to_time_t(time_point);
-    std::tm tm       = *std::localtime(&time);
+    const std::time_t time = std::chrono::system_clock::to_time_t(time_point);
+    const std::tm tm       = *std::localtime(&time);
     std::ostringstream oss;
     oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
     return oss.str();
@@ -63,9 +64,10 @@ class date_time {
    * @return A formatted date string with milliseconds.
    */
   static std::string format_date_string_with_milliseconds(const std::chrono::system_clock::time_point& time_point) {
-    std::time_t time  = std::chrono::system_clock::to_time_t(time_point);
-    std::tm tm        = *std::localtime(&time);
-    auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch()) % 1000;
+    const std::time_t time = std::chrono::system_clock::to_time_t(time_point);
+    const std::tm tm       = *std::localtime(&time);
+    const auto milliseconds =
+        std::chrono::duration_cast<std::chrono::milliseconds>(time_point.time_since_epoch()) % 1000;
     std::ostringstream oss;
     oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S") << '.' << std::setfill('0') << std::setw(3) << milliseconds.count();
     return oss.str();

@@ -11,7 +11,7 @@ auto sheer::io::read_binary_file(const std::string& file_path) -> std::vector<ui
   }
 
   // 获取文件大小
-  std::streamsize size = file.tellg();
+  const std::streamsize size = file.tellg();
   file.seekg(0, std::ios::beg);
 
   // 创建缓冲区

@@ -2,6 +2,7 @@
 #define SHEER_TIMED_CACHE_QUEUE_H
 
 #include <condition_variable>
+#include <cstdint>
 #include <queue>
 #include <thread>
 
@@ -58,7 +59,7 @@ class timed_cache_queue {
 
  private:
   std::queue<T> queue_;         ///< The queue storing elements of type T.
-  int cache_time_;              ///< Time in seconds after which elements are considered expired.
+  int32_t cache_time_;          ///< Time in seconds after which elements are considered expired.
   mutable std::mutex mutex_;    ///< Mutex to synchronize access to the queue.
   std::condition_variable cv_;  ///< Condition variable to signal changes in the queue.
   std::thread cleanup_thread_;  ///< Thread for periodically cleaning up expired elements.
