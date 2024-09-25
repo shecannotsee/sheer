@@ -160,6 +160,8 @@ install(FILES
         ${CMAKE_SOURCE_DIR}/src/io.h
         ${CMAKE_SOURCE_DIR}/src/string_support.h
         ${CMAKE_SOURCE_DIR}/src/timer.h
+        ${CMAKE_SOURCE_DIR}/src/destructor.h
+        ${CMAKE_SOURCE_DIR}/src/ring_buffer.h
         DESTINATION # to
         ${project_name}/include # install path
 )
